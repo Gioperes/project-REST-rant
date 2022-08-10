@@ -19,6 +19,7 @@ REST-Rant is an app where users can review restaurants.
 ## PLaces
 
 |Feild      | Object ID|
+| :---      | :---    |
 |name       |String|
 |city       |String|
 |state      |String|
@@ -28,6 +29,7 @@ REST-Rant is an app where users can review restaurants.
 ## Rants
 
 |_ID        |Object ID|
+| :---      | :---    |
 |place_ID   |ref(places) Object_Id|
 |rant       | Boolean|
 |rating     |Number|
