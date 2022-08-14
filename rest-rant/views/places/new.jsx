@@ -1,5 +1,5 @@
 const React = require('react')
-const Def = require('../default')
+const Def = require('./default')
 
 function new_form() {
     return (
@@ -33,9 +33,7 @@ function new_form() {
         </Def>
     )
 }
-router.get('/new', (req, res) => {
-    res.render('places/new')
-})
+
 module.exports = new_form
 
 
