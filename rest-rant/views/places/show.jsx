@@ -1,29 +1,26 @@
 const React = require('react')
 const Def = require('./default')
 
-const React = require('react')
-const Def = require('../default')
+// function new_form (data) {
+//   let message = 'Validation Error'                 
+//     if (data.message) {
+//       message = (
+//         <h4 className="alert-danger">
+//           {data.message}
+//         </h4>
+//       )
+//     }
+//     return (
+//         <Def>
+//           <main>
+//             <h1>Add a New Place</h1>
+//             {'Validation Error'}                 
+//           </main>
+//         </Def>
+//     )
+// }
 
-function new_form (data) {
-  let message = 'Validation Error'                 
-    if (data.message) {
-      message = (
-        <h4 className="alert-danger">
-          {data.message}
-        </h4>
-      )
-    }
-    return (
-        <Def>
-          <main>
-            <h1>Add a New Place</h1>
-            {'Validation Error'}                 
-          </main>
-        </Def>
-    )
-}
-
-module.exports = new_form
+// module.exports = new_form
 
 function show(data) {
     return (
@@ -46,6 +43,7 @@ function show(data) {
                         <h4>
                             Serving {data.place.cuisines}
                         </h4>
+                        <a href={`/places/edit/${data.place._id}`}>Edit</a>
                     </div>
                     </div>
             </main>
