@@ -1,28 +1,26 @@
 const React = require('react')
 const Def = require('./default')
 
-// function new_form (data) {
-//   let message = 'Validation Error'                 
-//     if (data.message) {
-//       message = (
-//         <h4 className="alert-danger">
-//           {data.message}
-//         </h4>
-//       )
-//     }
-//     return (
-//         <Def>
-//           <main>
-//             <h1>Add a New Place</h1>
-//             {'Validation Error'}                 
-//           </main>
-//         </Def>
-//     )
-// }
-
-// module.exports = new_form
-
 function show(data) {
+    let comments = (
+        <h3 className="inactive">
+          No comments yet!
+        </h3>
+      )
+      if (data.place.comments.length) {
+        comments = data.place.comments.map(c => {
+          return (
+            <div className="border">
+              <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
+              <h4>{c.content}</h4>
+              <h3>
+                <stong>- {c.author}</stong>
+              </h3>
+              <h4>Rating: {c.stars}</h4>
+            </div>
+          )
+        })
+      }
     return (
         <Def>
             <main>
