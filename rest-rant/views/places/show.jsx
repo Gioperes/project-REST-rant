@@ -54,8 +54,9 @@ function show(data) {
               <div class="container">
 	            <h2>Bootstrap star rating example</h2>
                <label for="ratinginput" class="control-label">Give A rating:</label>
-               <input id="ratinginput" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
-	            <input type="submit" name="Submit"/></input>
+               <input id="ratinginput" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2" />
+	                <input type="submit" name="Submit"/>
+             
 	          </div></div>
             <div className="form-group">
               <label htmlFor="cuisines">Comment</label>
