@@ -1,4 +1,5 @@
 const React = require('react')
+const comment = require('../../models/comment')
 const Def = require('./default')
 
 function show(data) {
@@ -7,20 +8,26 @@ function show(data) {
       No comments yet!
     </h3>
   )
-  if (data.place.comments.length) {
-    comments = data.place.comments.map(c => {
-      return (
-        <div className="border">
-          <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
-          <h4>{c.content}</h4>
-          <h3>
-            <stong>- {c.author}</stong>
-          </h3>
-          <h4>Rating: {c.stars}</h4>
-        </div>
+    let rating = (
+      <h3 className="inactive">
+        Not yet rated
+      </h3>
+    )
+    if (data.place.comments.length) {
+      let sumRatings = data.place.comments.reduce((tot, c) => {
+        return tot + c.stars
+      }, 0)
+      let averageRating = Math.round(sumRatings / data.place.comments.length)
+      let stars = ''
+      for (let i = 0; i < averageRating; i++) {
+        stars += 'â­ï¸'
+      }
+      rating = (
+        <h3>
+          {stars} stars
+        </h3>
       )
-    })
-  }
+    }
   return (
     <Def>
       <main>
@@ -42,6 +49,14 @@ function show(data) {
               Serving {data.place.cuisines}
             </h4>
             <a href={`/places/edit/${data.place._id}`}>Edit</a>
+            <div className="col-sm-6">
+              <h1>{ data.place.name }</h1>
+              <h2>
+                Rating
+              </h2>
+              {rating}
+              <br />
+            </div>
           </div>
         </div>
         <div>
@@ -56,7 +71,6 @@ function show(data) {
                <label for="ratinginput" class="control-label">Give A rating:</label>
                <input id="ratinginput" name="rating" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2" />
 	                <input type="submit" name="Submit"/>
-             
 	          </div></div>
             <div className="form-group">
               <label htmlFor="cuisines">Comment</label>
@@ -64,11 +78,14 @@ function show(data) {
             </div>
             <input className="btn btn-primary" type="submit" value="Add Comment" />
           </form>
+          <form method="POST" action={`/places/${data.place.id}/comment/${comment.id}?_method=DELETE`}>
+          <input type="submit" className="btn btn-danger" value="Delete Comment" />
+        </form>
         </div>
       </main>
     </Def>
 
   )
-}
+  }
 
 module.exports = show
